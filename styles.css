@@ -1,0 +1,26 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.screen{
+    border: 1px solid;
+    height: 75px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.displayWorking {
+    font-size: 30px;
+}
+
+.displayAnswer {
+    font-size: 45px;
+}
