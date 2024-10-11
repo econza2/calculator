@@ -198,9 +198,20 @@ entrytwo = document.querySelectorAll(".entry2");
 let numberAdditionPressed = 0;
 addition.addEventListener("click", () =>{
     
+    equals.disabled = false;
+
+
     if (operatorArray.length >= 1){
         if(operatorArray[operatorArray.length - 1] === "-"){
             subtraction.dispatchEvent(clickEvent);
+            continuingAdditiveTotal = screenTwo.value;
+        }
+        else if(operatorArray[operatorArray.length - 1] === "*"){
+            multiplication.dispatchEvent(clickEvent);
+            continuingAdditiveTotal = screenTwo.value;
+        }
+        else if(operatorArray[operatorArray.length - 1] === "/"){
+            division.dispatchEvent(clickEvent);
             continuingAdditiveTotal = screenTwo.value;
         }
     }
@@ -233,7 +244,6 @@ addition.addEventListener("click", () =>{
     }
     else if(operatorArray.length > 1){
         if(operatorArray[operatorArray.length - 1] !== "+"){
-            //firstNumber = 0;
             continuingAdditiveTotal = parseFloat(screenTwo.value);
             console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
                 "number Pressed", numberAdditionPressed); 
@@ -283,9 +293,20 @@ const subtraction = document.querySelector(".minus");
 let numberSubtractionPressed = 0;
 subtraction.addEventListener("click", () =>{
     
+    equals.disabled = false;
+
+
     if (operatorArray.length >= 1){
         if(operatorArray[operatorArray.length - 1] === "+"){
             addition.dispatchEvent(clickEvent);
+            continuingAdditiveTotal = screenTwo.value;
+        }
+        else if(operatorArray[operatorArray.length - 1] === "*"){
+            multiplication.dispatchEvent(clickEvent);
+            continuingAdditiveTotal = screenTwo.value;
+        }
+        else if(operatorArray[operatorArray.length - 1] === "/"){
+            division.dispatchEvent(clickEvent);
             continuingAdditiveTotal = screenTwo.value;
         }
     }
@@ -319,7 +340,6 @@ subtraction.addEventListener("click", () =>{
     }
     else if(operatorArray.length > 1){
         if(operatorArray[operatorArray.length - 1] !== "-"){
-            //firstNumber = 0;
             continuingAdditiveTotal = parseFloat(screenTwo.value);
             console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
                 "number Pressed", numberSubtractionPressed); 
@@ -363,6 +383,214 @@ subtraction.addEventListener("click", () =>{
 
 
 
+//Multiplication Event Listener
+
+
+const multiplication = document.querySelector(".multiplication");
+
+let numberMultiplicationPressed = 0;
+
+multiplication.addEventListener("click", () => {
+
+    if (operatorArray.length >= 1){
+        if(operatorArray[operatorArray.length - 1] === "+"){
+            addition.dispatchEvent(clickEvent);
+            continuingAdditiveTotal = screenTwo.value;
+        }
+        else if(operatorArray[operatorArray.length - 1] === "-"){
+            subtraction.dispatchEvent(clickEvent);
+            continuingAdditiveTotal = screenTwo.value;
+        }
+        else if(operatorArray[operatorArray.length - 1] === "/"){
+            division.dispatchEvent(clickEvent);
+            continuingAdditiveTotal = screenTwo.value;
+        }
+    }
+    
+    firstNumber = parseFloat(screenOne.value);
+
+    if (operatorArray.length < 1){
+        if (isNaN(firstNumber)){
+            continuingAdditiveTotal = 0;
+            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
+                "number Pressed", numberMultiplicationPressed);
+        }
+        else{
+            continuingAdditiveTotal = firstNumber;
+            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
+                "number Pressed", numberMultiplicationPressed);
+        }
+    }
+    else if (operatorArray.length == 1){
+        if (isNaN(firstNumber)){
+            continuingAdditiveTotal *= 1;
+            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
+                "number Pressed", numberMultiplicationPressed);
+        }
+        else {
+            continuingAdditiveTotal *= firstNumber;
+            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
+                "number Pressed", numberMultiplicationPressed);
+        }
+    }
+    else if(operatorArray.length > 1){
+        if(operatorArray[operatorArray.length - 1] !== "*"){
+            continuingAdditiveTotal = parseFloat(screenTwo.value);
+            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
+                "number Pressed", numberMultiplicationPressed); 
+        }
+        else {
+            continuingAdditiveTotal *= firstNumber;
+            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
+                "number Pressed", numberMultiplicationPressed);
+        }    
+    }
+    else {
+        console.log("Should not get to this point");
+    }
+
+
+    let secondScreenArray = [];
+    for(let i = 0; i < entrytwo.length; i++){
+        entrytwo[i].addEventListener("click", () => {
+            let secondContainingText = entrytwo[i].textContent;
+            secondScreenArray.push(secondContainingText);
+            let secondScreenValue = secondScreenArray.join("");
+            screenTwo.value = secondScreenValue; 
+            secondValue = screenTwo.value;       
+        });
+    } 
+
+
+    screenTwo.value = continuingAdditiveTotal;
+    console.log("firstNumber", firstNumber);
+    console.log("total", continuingAdditiveTotal);
+
+
+    operatorArray.push(multiplication.textContent);
+    console.log("operator Array", operatorArray);
+
+    numberMultiplicationPressed++;
+});
+
+
+
+
+
+
+
+//Divison Event Listener 
+
+const division = document.querySelector(".division");
+
+let numberDivisionPressed = 0;
+
+division.addEventListener("click", () => {
+
+    if (operatorArray.length >= 1){
+        if(operatorArray[operatorArray.length - 1] === "+"){
+            addition.dispatchEvent(clickEvent);
+            continuingAdditiveTotal = screenTwo.value;
+        }
+        else if(operatorArray[operatorArray.length - 1] === "-"){
+            subtraction.dispatchEvent(clickEvent);
+            continuingAdditiveTotal = screenTwo.value;
+        }
+        else if(operatorArray[operatorArray.length - 1] === "*"){
+            multiplication.dispatchEvent(clickEvent);
+            continuingAdditiveTotal = screenTwo.value;
+        }
+    }
+    
+    
+    firstNumber = parseFloat(screenOne.value);
+
+    if (operatorArray.length < 1){
+        if (isNaN(firstNumber)){
+            continuingAdditiveTotal = 0;
+            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
+                "number Pressed", numberDivisionPressed);
+        }
+        else{
+            continuingAdditiveTotal = firstNumber;
+            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
+                "number Pressed", numberDivisionPressed);
+        }
+    }
+    else if (operatorArray.length == 1){
+        if (isNaN(firstNumber)){
+            continuingAdditiveTotal /= 1;
+            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
+                "number Pressed", numberDivisionPressed);
+        }
+        else {
+            continuingAdditiveTotal /= firstNumber;
+            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
+                "number Pressed", numberDivisionPressed);
+        }
+    }
+    else if(operatorArray.length > 1){
+        if(operatorArray[operatorArray.length - 1] !== "/"){
+            continuingAdditiveTotal = parseFloat(screenTwo.value);
+            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
+                "number Pressed", numberDivisionPressed); 
+        }
+        else {
+            continuingAdditiveTotal /= firstNumber;
+            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
+                "number Pressed", numberDivisionPressed);
+        }    
+    }
+    else {
+        console.log("Should not get to this point");
+    }
+
+
+    let secondScreenArray = [];
+    for(let i = 0; i < entrytwo.length; i++){
+        entrytwo[i].addEventListener("click", () => {
+            let secondContainingText = entrytwo[i].textContent;
+            secondScreenArray.push(secondContainingText);
+            let secondScreenValue = secondScreenArray.join("");
+            screenTwo.value = secondScreenValue; 
+            secondValue = screenTwo.value;       
+        });
+    } 
+
+
+    screenTwo.value = continuingAdditiveTotal;
+    console.log("firstNumber", firstNumber);
+    console.log("total", continuingAdditiveTotal);
+
+
+    operatorArray.push(division.textContent);
+    console.log("operator Array", operatorArray);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -375,13 +603,20 @@ const equals = document.querySelector(".equals");
 
 
 equals.addEventListener("click", () => {
-    if(operatorArray.length <= 1){
-        screenValue = "";
-        screenTwo.value = additiveTotal;
+    if(operatorArray.length < 1){
+        screenTwo.value = 0;
     }
     else{
-        screenValue = "";
-        screenTwo.value = continuingAdditiveTotal;
+        if(operatorArray[operatorArray.length - 1] == "+"){
+            addition.dispatchEvent(clickEvent);
+            screenTwo.value = continuingAdditiveTotal;
+            equals.disabled = true;
+        }
+        else if(operatorArray[operatorArray.length - 1] == "-"){
+            subtraction.dispatchEvent(clickEvent);
+            screenTwo.value = continuingAdditiveTotal;
+            equals.disabled = true;
+        }
     }
 });
 
