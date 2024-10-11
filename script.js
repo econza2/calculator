@@ -149,6 +149,7 @@ let multiplicativeTotal = 1;
 let continuingAdditiveTotal;
 let continuingMultiplicativeTotal;
 let operatorArray = [];
+let firstNumber;
 
 
 let screenArray = [];
@@ -200,23 +201,13 @@ addition.addEventListener("click", () =>{
     if (operatorArray.length >= 1){
         if(operatorArray[operatorArray.length - 1] === "-"){
             subtraction.dispatchEvent(clickEvent);
+            continuingAdditiveTotal = screenTwo.value;
         }
     }
 
-    let firstNumber;
-
-    if(operatorArray.length < 1){
-        firstNumber = parseFloat(screenOne.value);
-    }
-    else {
-        firstNumber = parseFloat(screenTwo.value);
-    }
-
-
     firstNumber = parseFloat(screenOne.value);
-    
-    
-    if (operatorArray.length < 1 && numberAdditionPressed < 1){
+
+    if (operatorArray.length < 1){
         if (isNaN(firstNumber)){
             continuingAdditiveTotal = 0;
             console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
@@ -228,7 +219,7 @@ addition.addEventListener("click", () =>{
                 "number Pressed", numberAdditionPressed);
         }
     }
-    else if (operatorArray.length === 1 && numberAdditionPressed < 1){
+    else if (operatorArray.length == 1){
         if (isNaN(firstNumber)){
             continuingAdditiveTotal += 0;
             console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
@@ -240,59 +231,23 @@ addition.addEventListener("click", () =>{
                 "number Pressed", numberAdditionPressed);
         }
     }
-    else if (operatorArray.length === 1 && numberAdditionPressed === 1){
-        if (isNaN(firstNumber)){
-            continuingAdditiveTotal += 0;
+    else if(operatorArray.length > 1){
+        if(operatorArray[operatorArray.length - 1] !== "+"){
+            //firstNumber = 0;
+            continuingAdditiveTotal = parseFloat(screenTwo.value);
             console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
-                "number Pressed", numberAdditionPressed);
+                "number Pressed", numberAdditionPressed); 
         }
         else {
             continuingAdditiveTotal += firstNumber;
             console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
                 "number Pressed", numberAdditionPressed);
-        }
-    }
-    else if (operatorArray.length > 1 && numberAdditionPressed < 1){
-        if (isNaN(firstNumber)){
-            continuingAdditiveTotal += 0;
-            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
-                "number Pressed", numberAdditionPressed);
-        }
-        else {
-            continuingAdditiveTotal += firstNumber;
-            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
-                "number Pressed", numberAdditionPressed);
-        }
-    }
-    else if (operatorArray.length > 1 && numberAdditionPressed === 1){
-        if (isNaN(firstNumber)){
-            continuingAdditiveTotal += 0;
-            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
-                "number Pressed", numberAdditionPressed);
-        }
-        else {
-            continuingAdditiveTotal += firstNumber;
-            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
-                "number Pressed", numberAdditionPressed);
-        }
-    }
-    else if (operatorArray.length > 1 && numberAdditionPressed > 1){
-        if (isNaN(firstNumber)){
-            continuingAdditiveTotal += 0;
-            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
-                "number Pressed", numberAdditionPressed);
-        }
-        else {
-            continuingAdditiveTotal += firstNumber;
-            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
-                "number Pressed", numberAdditionPressed);
-        }
+        }    
     }
     else {
-        console.log("Error");
+        console.log("Should not get to this point");
     }
-
-
+    
 
     let secondScreenArray = [];
     for(let i = 0; i < entrytwo.length; i++){
@@ -306,9 +261,6 @@ addition.addEventListener("click", () =>{
     }  
 
 
-
-
-    
     screenTwo.value = continuingAdditiveTotal;
     console.log("firstNumber", firstNumber);
     console.log("total", continuingAdditiveTotal);
@@ -334,95 +286,52 @@ subtraction.addEventListener("click", () =>{
     if (operatorArray.length >= 1){
         if(operatorArray[operatorArray.length - 1] === "+"){
             addition.dispatchEvent(clickEvent);
+            continuingAdditiveTotal = screenTwo.value;
         }
     }
 
 
+    firstNumber = parseFloat(screenOne.value);
 
-    let firstNumberSubtraction;
-
-    if(operatorArray.length < 1){
-        firstNumberSubtraction = parseFloat(screenOne.value);
-    }
-    else {
-        firstNumberSubtraction = parseFloat(screenTwo.value);
-    }
-
-    
-    if (operatorArray.length < 1 && numberSubtractionPressed < 1){
-        if (isNaN(firstNumberSubtraction)){
+    if (operatorArray.length < 1){
+        if (isNaN(firstNumber)){
             continuingAdditiveTotal = 0;
             console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
                 "number Pressed", numberSubtractionPressed);
         }
         else{
-            continuingAdditiveTotal = firstNumberSubtraction;
+            continuingAdditiveTotal = firstNumber;
             console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
                 "number Pressed", numberSubtractionPressed);
         }
     }
-    else if (operatorArray.length === 1 && numberSubtractionPressed < 1){
-        if (isNaN(firstNumberSubtraction)){
+    else if (operatorArray.length == 1){
+        if (isNaN(firstNumber)){
             continuingAdditiveTotal -= 0;
             console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
                 "number Pressed", numberSubtractionPressed);
         }
         else {
-            continuingAdditiveTotal -= firstNumberSubtraction;
+            continuingAdditiveTotal -= firstNumber;
             console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
                 "number Pressed", numberSubtractionPressed);
         }
     }
-    else if (operatorArray.length === 1 && numberSubtractionPressed === 1){
-        if (isNaN(firstNumberSubtraction)){
-            continuingAdditiveTotal -= 0;
+    else if(operatorArray.length > 1){
+        if(operatorArray[operatorArray.length - 1] !== "-"){
+            //firstNumber = 0;
+            continuingAdditiveTotal = parseFloat(screenTwo.value);
             console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
-                "number Pressed", numberSubtractionPressed);
+                "number Pressed", numberSubtractionPressed); 
         }
         else {
-            continuingAdditiveTotal -= firstNumberSubtraction;
+            continuingAdditiveTotal -= firstNumber;
             console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
                 "number Pressed", numberSubtractionPressed);
-        }
-    }
-    else if (operatorArray.length > 1 && numberSubtractionPressed < 1){
-        if (isNaN(firstNumberSubtraction)){
-            continuingAdditiveTotal -= 0;
-            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
-                "number Pressed", numberSubtractionPressed);
-        }
-        else {
-            continuingAdditiveTotal -= firstNumberSubtraction;
-            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
-                "number Pressed", numberSubtractionPressed);
-        }
-    }
-    else if (operatorArray.length > 1 && numberSubtractionPressed === 1){
-        if (isNaN(firstNumberSubtraction)){
-            continuingAdditiveTotal -= 0;
-            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
-                "number Pressed", numberSubtractionPressed);
-        }
-        else {
-            continuingAdditiveTotal -= firstNumberSubtraction;
-            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
-                "number Pressed", numberSubtractionPressed);
-        }
-    }
-    else if (operatorArray.length > 1 && numberSubtractionPressed > 1){
-        if (isNaN(firstNumberSubtraction)){
-            continuingAdditiveTotal -= 0;
-            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
-                "number Pressed", numberSubtractionPressed);
-        }
-        else {
-            continuingAdditiveTotal -= firstNumberSubtraction;
-            console.log("continuing Total ", continuingAdditiveTotal," array Length ", operatorArray.length,
-                 "number Pressed", numberSubtractionPressed);
-        }
+        }    
     }
     else {
-        console.log("Error");
+        console.log("Should not get to this point");
     }
 
     
@@ -436,13 +345,10 @@ subtraction.addEventListener("click", () =>{
             secondValue = screenTwo.value;       
         });
     }  
-
-
-
-    
+   
     
     screenTwo.value = continuingAdditiveTotal;
-    console.log("firstNumber", firstNumberSubtraction);
+    console.log("firstNumber", firstNumber);
     console.log("total", continuingAdditiveTotal);
 
 
@@ -478,3 +384,4 @@ equals.addEventListener("click", () => {
         screenTwo.value = continuingAdditiveTotal;
     }
 });
+
