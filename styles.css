@@ -1,0 +1,61 @@
+body {
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: lightgreen;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    width: 400px;
+}
+
+.screen1 {
+    height: 50px;
+    font-size: 40px;
+    background-color: turquoise;
+    text-align: right;
+    font-weight: bold;
+}
+
+.button-container {
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.row-one,
+.row-two,
+.row-three,
+.row-four {
+    align-self: stretch;
+    height: 80px;
+    min-width: 10px;
+}
+
+.entry1,
+.operator,
+.equals,
+.decimal,
+.backspace,
+.clear,
+.off,
+.ac {
+    height: 81px;
+    box-sizing: border-box;
+    width: 75px;
+    background-color: pink;
+}
+
+.operator,
+.equals,
+.off,
+.ac{
+    background-color:brown;
+}

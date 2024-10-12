@@ -1,148 +1,8 @@
-const calculateButton = document.querySelector(".calculate");
-const parametersInput = document.createElement("input");
-parametersInput.setAttribute("type", "text");
-//parametersInput.classList.add("text-input");
-const body = document.querySelector("body");
-body.appendChild(parametersInput); 
-
-
-
-let inputArray = [];
-parametersInput.addEventListener("keydown", (event) => {
-    if(
-        event.key == "0" ||
-        event.key == "1" ||
-        event.key == "2" ||
-        event.key == "3" ||
-        event.key == "4" ||
-        event.key == "5" ||
-        event.key == "6" ||
-        event.key == "7" ||
-        event.key == "8" ||
-        event.key == "9" ||
-        event.key == "+"
-    ) {
-        inputArray.push(event.key);
-    }
-    else {
-        inputArray.push("");
-    }
-});
-
-
-
-calculateButton.addEventListener("click", () => {
-    let rawArray = [];
-    rawArray = inputArray;
-    let secondOperand;
-    let firstPlusIndex = rawArray.indexOf("+");
-    console.log(rawArray);
-    console.log(firstPlusIndex);
-
-   if (firstPlusIndex == -1){
-    secondOperand = [];
-    
-   }
-   else {
-    secondOperand = rawArray.splice(firstPlusIndex, (rawArray.length - firstPlusIndex));
-   }
-    
-    let operator = secondOperand.slice(0, 1);
-    secondOperand.splice(0, 1);
-    
-
-//Remove Whitespaces usign for loop
-let firstArrayLength = rawArray.length;
-for(let k = 0; k < firstArrayLength; k++){
-    let blankIndex = rawArray.lastIndexOf("");
-    if(blankIndex !== -1){
-        rawArray.splice(blankIndex, 1);
-    }
-}
-
-
-let secondArrayLength = secondOperand.length;
-for(let l = 0; l < firstArrayLength; l++){
-    let blankIndex = secondOperand.lastIndexOf("");
-    if(blankIndex !== -1){
-        secondOperand.splice(blankIndex, 1);
-    }
-}
-
-  
-let secondPlusIndex = secondOperand.indexOf("+");
-let discardedOperand;
-
-if (secondPlusIndex == -1){
-    discardedOperand = [];
-    
-}
-else {
-    discardedOperand = secondOperand.splice(secondPlusIndex, (secondOperand.length - secondPlusIndex));
-}
-
-    console.log("first operand", rawArray);
-    console.log("second operand", secondOperand);
-    console.log("operator", operator);
-    console.log("discardedOperand", discardedOperand);
-
-    let firstOperandString = rawArray.join("");
-    let secondOperandString = secondOperand.join("");
-
-
-    console.log("First String", firstOperandString);
-    console.log("Second String", secondOperandString);
-
-
-    let firstOperandNumber;
-    let secondOperandNumber;
-
-
-    if(firstOperandString === ""){
-        firstOperandNumber = 0;
-    }
-    else{
-        firstOperandNumber = parseInt(firstOperandString);
-    }
-
-
-    if(secondOperandString === ""){
-        secondOperandNumber = 0;
-    }
-    else{
-        secondOperandNumber = parseInt(secondOperandString);
-    }
-
-
-
-    console.log("First Number", firstOperandNumber);
-    console.log("Second Number", secondOperandNumber);
-
-
-    let sum = firstOperandNumber + secondOperandNumber;
-    console.log("The sum is:, ", sum);
-});
-
-
-/*
-
-
-
-Here Marks the begining of Adding the Components to the DOM
-
-
-
-*/
-
-
-
-
-
 //First Entry Event Listener
 
 const entryone = document.querySelectorAll(".entry1");
 const screenOne = document.querySelector(".screen1");
-const operator = document.querySelector(".operator");
+
 
 let additiveTotal = 0;
 let multiplicativeTotal = 1;
@@ -152,13 +12,14 @@ let operatorArray = [];
 let firstNumber;
 
 
+
 let screenArray = [];
 for(let i = 0; i < entryone.length; i++){
     entryone[i].addEventListener("click", () => {
         let containingText = entryone[i].textContent;
         screenArray.push(containingText);
         let screenValue = screenArray.join("");
-        screenOne.value = screenValue;   
+        screenOne.value = screenValue;
     });
 }
 
@@ -177,7 +38,7 @@ entrytwo = document.querySelectorAll(".entry2");
 let numberAdditionPressed = 0;
 addition.addEventListener("click", () =>{
     
-    equals.disabled = false;
+    equals.disabled = false; 
 
 
     if (operatorArray.length >= 1){
@@ -368,6 +229,8 @@ let numberMultiplicationPressed = 0;
 
 multiplication.addEventListener("click", () => {
 
+    equals.disabled = false;
+
     if (operatorArray.length >= 1){
         if(operatorArray[operatorArray.length - 1] === "+"){
             addition.dispatchEvent(clickEvent);
@@ -459,6 +322,8 @@ let numberDivisionPressed = 0;
 
 division.addEventListener("click", () => {
 
+    equals.disabled = false;
+
     if (operatorArray.length >= 1){
         if(operatorArray[operatorArray.length - 1] === "+"){
             addition.dispatchEvent(clickEvent);
@@ -541,6 +406,7 @@ division.addEventListener("click", () => {
 
 
 
+
 // Equal Sign Event Listener
 
 const equals = document.querySelector(".equals");
@@ -548,20 +414,30 @@ const equals = document.querySelector(".equals");
 
 
 equals.addEventListener("click", () => {
-    if(operatorArray.length < 1){
-        screenTwo.value = 0;
+    if(operatorArray[operatorArray.length -1] == "+"){
+        continuingAdditiveTotal += parseFloat(screenTwo.value);
+        screenTwo.value = continuingAdditiveTotal;
+        equals.disabled = true;
+        operatorArray = [];
     }
-    else{
-        if(operatorArray[operatorArray.length - 1] == "+"){
-            addition.dispatchEvent(clickEvent);
-            screenTwo.value = continuingAdditiveTotal;
-            equals.disabled = true;
-        }
-        else if(operatorArray[operatorArray.length - 1] == "-"){
-            subtraction.dispatchEvent(clickEvent);
-            screenTwo.value = continuingAdditiveTotal;
-            equals.disabled = true;
-        }
+    else if(operatorArray[operatorArray.length -1] == "-"){
+        continuingAdditiveTotal -= parseFloat(screenTwo.value);
+        screenTwo.value = continuingAdditiveTotal;
+        operatorArray = [];
+    }
+    else if(operatorArray[operatorArray.length -1] == "*"){
+        continuingAdditiveTotal *= parseFloat(screenTwo.value);
+        screenTwo.value = continuingAdditiveTotal;
+        operatorArray = [];
+    }
+    else if(operatorArray[operatorArray.length -1] == "/"){
+        continuingAdditiveTotal /= parseFloat(screenTwo.value);
+        screenTwo.value = continuingAdditiveTotal;
+        operatorArray = [];
+    }
+    else {
+        continuingAdditiveTotal = 0;
+        console.log("troubleshoot");
     }
 });
 
@@ -576,13 +452,14 @@ const clear = document.querySelector(".clear");
 
 
 clear.addEventListener("click", () => {
-    screenTwo.value = "";
-    firstNumber = 0;
-    continuingAdditiveTotal = 0;
+    // screenTwo.value = 0;
+    // //firstNumber = 0;
+    // continuingAdditiveTotal = 0;
 
 
-    console.log("cleared firstNumber", firstNumber);
-    console.log("cleared total", continuingAdditiveTotal);
+    // console.log("cleared firstNumber", firstNumber);
+    // console.log("cleared total", continuingAdditiveTotal);
+    location.reload();
 });
 
 
@@ -593,10 +470,10 @@ const backspace = document.querySelector(".backspace");
 
 
 backspace.addEventListener("click", () => {
-    let splitArray = screenTwo.value.split("");
-    splitArray.pop();
-    let joinedString = splitArray.join("")
-    screenTwo.value = joinedString;
+    // let splitArray = screenTwo.value.split("");
+    // splitArray.pop();
+    // let joinedString = splitArray.join("")
+    // screenTwo.value = joinedString;
 });
 
 
@@ -609,9 +486,15 @@ decimal.addEventListener("click", () => {
         if(screenTwo.value.length >= 1){
             screenArray.push(decimal.textContent);
         }
-        else if(secondScreenArray.length >= 0){
-            screenArray.push(decimal.textContent);
-        }
 });
 
+
+//Operator Event Listener
+
+const operator = document.querySelector(".operator");
+
+operator.addEventListener("click", () => {
+    equals.disabled = false;
+    console.log("pressed operator");
+});
 
