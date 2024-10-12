@@ -163,29 +163,8 @@ for(let i = 0; i < entryone.length; i++){
 }
 
 
-
-
-//Execution of Previous Operation Before The Current Operation Is Performed
-//e.g If I press the plus button then the minus button......
-//.....the operations from the plus buttom must be executed first before those of 
-//the minus button
-
-
-
-const operatorExecutor = document.createElement("button");
-let clickEvent = new Event("click", { bubbles: true, cancelable: false});
-
-operatorExecutor.addEventListener("click", () => {
-
-    if (operatorArray.length >= 1){
-        if(operatorArray[operatorArray.length - 1] === "+"){
-            addition.dispatchEvent(clickEvent);
-        }
-        else if (operatorArray[operatorArray.length -1] === "-"){
-            subtraction.dispatchEvent(clickEvent);
-        }
-    }
-});
+//Defining Click Event
+let clickEvent = new Event("click");
 
 
 
@@ -281,9 +260,6 @@ addition.addEventListener("click", () =>{
 
     numberAdditionPressed++;
 });
-
-
-
 
 
 //Subtraction Event Listener
@@ -475,10 +451,6 @@ multiplication.addEventListener("click", () => {
 
 
 
-
-
-
-
 //Divison Event Listener 
 
 const division = document.querySelector(".division");
@@ -569,33 +541,6 @@ division.addEventListener("click", () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Equal Sign Event Listener
 
 const equals = document.querySelector(".equals");
@@ -619,4 +564,54 @@ equals.addEventListener("click", () => {
         }
     }
 });
+
+
+
+
+//Clear Event Listener
+
+
+const clear = document.querySelector(".clear");
+
+
+
+clear.addEventListener("click", () => {
+    screenTwo.value = "";
+    firstNumber = 0;
+    continuingAdditiveTotal = 0;
+
+
+    console.log("cleared firstNumber", firstNumber);
+    console.log("cleared total", continuingAdditiveTotal);
+});
+
+
+//Backspace Event Listener
+
+
+const backspace = document.querySelector(".backspace");
+
+
+backspace.addEventListener("click", () => {
+    let splitArray = screenTwo.value.split("");
+    splitArray.pop();
+    let joinedString = splitArray.join("")
+    screenTwo.value = joinedString;
+});
+
+
+
+//Decimal Event Listener
+
+const decimal = document.querySelector(".decimal");
+
+decimal.addEventListener("click", () => {
+        if(screenTwo.value.length >= 1){
+            screenArray.push(decimal.textContent);
+        }
+        else if(secondScreenArray.length >= 0){
+            screenArray.push(decimal.textContent);
+        }
+});
+
 
