@@ -20,6 +20,17 @@ for(let i = 0; i < entryone.length; i++){
         screenArray.push(containingText);
         let screenValue = screenArray.join("");
         screenOne.value = screenValue;
+
+        const decimal = document.querySelector(".decimal");
+
+        decimal.addEventListener("click", () => {
+            if(screenArray.includes(".")){
+                console.log("decimal already present");
+            }
+            else {
+                screenArray.push(".");
+            }
+        });
     });
 }
 
@@ -106,7 +117,18 @@ addition.addEventListener("click", () =>{
             secondScreenArray.push(secondContainingText);
             let secondScreenValue = secondScreenArray.join("");
             screenTwo.value = secondScreenValue; 
-            secondValue = screenTwo.value;       
+            secondValue = screenTwo.value;
+            
+            const decimal = document.querySelector(".decimal");
+
+            decimal.addEventListener("click", () => {
+                if(secondScreenArray.includes(".")){
+                    console.log("decimal already present");
+                }
+                else {
+                    secondScreenArray.push(".");
+                }
+            });
         });
     }  
 
@@ -199,7 +221,19 @@ subtraction.addEventListener("click", () =>{
             secondScreenArray.push(secondContainingText);
             let secondScreenValue = secondScreenArray.join("");
             screenTwo.value = secondScreenValue; 
-            secondValue = screenTwo.value;       
+            secondValue = screenTwo.value; 
+            
+            
+            const decimal = document.querySelector(".decimal");
+
+            decimal.addEventListener("click", () => {
+                if(secondScreenArray.includes(".")){
+                    console.log("decimal already present");
+                }
+                else {
+                    secondScreenArray.push(".");
+                }
+            });
         });
     }  
    
@@ -296,7 +330,19 @@ multiplication.addEventListener("click", () => {
             secondScreenArray.push(secondContainingText);
             let secondScreenValue = secondScreenArray.join("");
             screenTwo.value = secondScreenValue; 
-            secondValue = screenTwo.value;       
+            secondValue = screenTwo.value; 
+            
+
+            const decimal = document.querySelector(".decimal");
+            
+            decimal.addEventListener("click", () => {
+                if(secondScreenArray.includes(".")){
+                    console.log("decimal already present");
+                }
+                else {
+                    secondScreenArray.push(".");
+                }
+            });
         });
     } 
 
@@ -390,7 +436,19 @@ division.addEventListener("click", () => {
             secondScreenArray.push(secondContainingText);
             let secondScreenValue = secondScreenArray.join("");
             screenTwo.value = secondScreenValue; 
-            secondValue = screenTwo.value;       
+            secondValue = screenTwo.value; 
+            
+
+            const decimal = document.querySelector(".decimal");
+            
+            decimal.addEventListener("click", () => {
+                if(secondScreenArray.includes(".")){
+                    console.log("decimal already present");
+                }
+                else {
+                    secondScreenArray.push(".");
+                }
+            });
         });
     } 
 
@@ -452,49 +510,5 @@ const clear = document.querySelector(".clear");
 
 
 clear.addEventListener("click", () => {
-    // screenTwo.value = 0;
-    // //firstNumber = 0;
-    // continuingAdditiveTotal = 0;
-
-
-    // console.log("cleared firstNumber", firstNumber);
-    // console.log("cleared total", continuingAdditiveTotal);
     location.reload();
 });
-
-
-//Backspace Event Listener
-
-
-const backspace = document.querySelector(".backspace");
-
-
-backspace.addEventListener("click", () => {
-    // let splitArray = screenTwo.value.split("");
-    // splitArray.pop();
-    // let joinedString = splitArray.join("")
-    // screenTwo.value = joinedString;
-});
-
-
-
-//Decimal Event Listener
-
-const decimal = document.querySelector(".decimal");
-
-decimal.addEventListener("click", () => {
-        if(screenTwo.value.length >= 1){
-            screenArray.push(decimal.textContent);
-        }
-});
-
-
-//Operator Event Listener
-
-const operator = document.querySelector(".operator");
-
-operator.addEventListener("click", () => {
-    equals.disabled = false;
-    console.log("pressed operator");
-});
-
